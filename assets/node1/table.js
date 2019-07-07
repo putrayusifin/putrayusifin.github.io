@@ -6,7 +6,7 @@ async function main() {
     let FETCH_STATUS = false
     // let FETCHED_DATA = []
     let index = 1
-    await db.ref('/2/xlog/temperature').limitToLast(5000).once('value', function (snapshot) {
+    await db.ref('/2/xlog/sensor').limitToLast(5000).once('value', function (snapshot) {
         // FETCHED_DATA = []
 		
         snapshot.forEach(s => {
@@ -44,7 +44,7 @@ async function main() {
 		});
     })
 
-    db.ref('/2/xlog/temperature').endAt().limitToLast(1).on('child_added', function (snapshot) {
+    db.ref('/2/xlog/sensor').endAt().limitToLast(1).on('child_added', function (snapshot) {
         // biar data terakhir ga kedobel
         if (!FETCH_STATUS) {
             FETCH_STATUS = true
