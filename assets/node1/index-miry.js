@@ -60,7 +60,7 @@ async function main() {
 
         // The data for our dataset
         data: {
-            labels: FILTERED_DATA.map(data => data.start_tempperature),
+            labels: FILTERED_DATA.map(data => data.start_temperature),
             datasets: [{
                 label: "Durasi Stabil",
                 fill: false,
