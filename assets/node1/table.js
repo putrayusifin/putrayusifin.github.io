@@ -6,15 +6,15 @@ async function main() {
     let FETCH_STATUS = false
     // let FETCHED_DATA = []
     let index = 1
-    await db.ref('/2/xlog').limitToLast(5000).once('value', function (snapshot) {
+    await db.ref('/2/xlog/temperature').limitToLast(5000).once('value', function (snapshot) {
         // FETCHED_DATA = []
 		
         snapshot.forEach(s => {
             // FETCHED_DATA.push(s.val())
             const {
                 Waktu,
-                temperature,
-				humidity
+                temperature
+				
             } = s.val()
 
            // if (parameter.node !== 'Node-01') {
@@ -24,7 +24,7 @@ async function main() {
             const bodyTable = document.getElementById('bodyTable')
 
             const tr = document.createElement('tr')
-            const arr = [index, Waktu, temperature, humidity]
+            const arr = [index, Waktu, temperature]
             const tds = []
 
             arr.map(a => {
@@ -44,7 +44,7 @@ async function main() {
 		});
     })
 
-    db.ref('/2/xlog').endAt().limitToLast(1).on('child_added', function (snapshot) {
+    db.ref('/2/xlog/temperature').endAt().limitToLast(1).on('child_added', function (snapshot) {
         // biar data terakhir ga kedobel
         if (!FETCH_STATUS) {
             FETCH_STATUS = true
@@ -53,8 +53,8 @@ async function main() {
 
         const {
             Waktu,
-			temperature,
-            humidity
+		temperature
+            
         } = snapshot.val()
 
         //if (parameter.node !== 'Node-01') {
@@ -64,7 +64,7 @@ async function main() {
         const bodyTable = document.getElementById('bodyTable')
 
         const tr = document.createElement('tr')
-        const arr = [index, Waktu, temperature, humidity]
+        const arr = [index, Waktu, temperature]
         const tds = []
 
         arr.map(a => {
