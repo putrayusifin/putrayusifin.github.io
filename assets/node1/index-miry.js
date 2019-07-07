@@ -9,7 +9,7 @@ async function main() {
     let FILTERED_DATA = []
 
     // NGAMBIL SEMUA YG BELUM BELUM
-    await db.ref('/2/xlog').limitToLast(20).once('value', function (snapshot) {
+    await db.ref('/2/xlog/prediction').limitToLast(20).once('value', function (snapshot) {
         FETCHED_DATA = []
         snapshot.forEach(s => {
             FETCHED_DATA.push(s.val())
@@ -29,19 +29,19 @@ async function main() {
     })
 
     // NGAMBIL DATA BARU -> TAMPILIN
-    db.ref('/2/xlog').endAt().limitToLast(1).on('child_added', function (snapshot) {
+    db.ref('/2/xlog/prediction').endAt().limitToLast(1).on('child_added', function (snapshot) {
         if (FETCH_STATUS) {
             const {
-                Waktu,
-                humidity
+                duration,
+                start_temperature
             } = snapshot.val()
 
            // if (parameter.node !== 'Node-01') {
              //   return //bawahnya ga dieksekusi
             //}
 
-            chart.data.labels.push(Waktu)
-            chart.data.datasets[0].data.push(humidity)
+            chart.data.labels.push(duration)
+            chart.data.datasets[0].data.push(start_temperature)
 
             if (chart.data.datasets[0].data.length > GLOBAL_takeLastN) {
                 chart.data.labels.shift()
@@ -60,12 +60,12 @@ async function main() {
 
         // The data for our dataset
         data: {
-            labels: FILTERED_DATA.map(data => data.Waktu),
+            labels: FILTERED_DATA.map(data => data.duration),
             datasets: [{
-                label: "Kelembapan",
+                label: "Durasi Stabil",
                 fill: false,
                 borderColor: 'rgb(255, 195, 0)',
-                data: FILTERED_DATA.map(data => data.humidity),
+                data: FILTERED_DATA.map(data => data.start_temperature),
             }]
         },
 
