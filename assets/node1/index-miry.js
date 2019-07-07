@@ -40,8 +40,8 @@ async function main() {
              //   return //bawahnya ga dieksekusi
             //}
 
-            chart.data.labels.push(duration)
-            chart.data.datasets[0].data.push(start_temperature)
+            chart.data.labels.push(start_temperature)
+            chart.data.datasets[0].data.push(duration)
 
             if (chart.data.datasets[0].data.length > GLOBAL_takeLastN) {
                 chart.data.labels.shift()
@@ -60,12 +60,12 @@ async function main() {
 
         // The data for our dataset
         data: {
-            labels: FILTERED_DATA.map(data => data.duration),
+            labels: FILTERED_DATA.map(data => data.start_tempperature),
             datasets: [{
                 label: "Durasi Stabil",
                 fill: false,
                 borderColor: 'rgb(255, 195, 0)',
-                data: FILTERED_DATA.map(data => data.start_temperature),
+                data: FILTERED_DATA.map(data => data.duration),
             }]
         },
 
