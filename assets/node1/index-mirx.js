@@ -9,7 +9,7 @@ async function main() {
     let FILTERED_DATA = []
 
     // NGAMBIL SEMUA YG BELUM BELUM
-    await db.ref('/2/xlog').limitToLast(20).once('value', function (snapshot) {
+    await db.ref('/2/xlog/sensor').limitToLast(20).once('value', function (snapshot) {
         FETCHED_DATA = []
 		
         snapshot.forEach(s => {
@@ -31,7 +31,7 @@ async function main() {
     })
 
     // NGAMBIL DATA BARU -> TAMPILIN
-    db.ref('/2/xlog').endAt().limitToLast(1).on('child_added', function (snapshot) {
+    db.ref('/2/xlog/sensor').endAt().limitToLast(1).on('child_added', function (snapshot) {
         if (FETCH_STATUS) {
             const {
                 Waktu,
