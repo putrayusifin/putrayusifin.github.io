@@ -9,7 +9,7 @@ async function main() {
     let FILTERED_DATA = []
 
     // NGAMBIL SEMUA YG BELUM BELUM
-    await db.ref('/2/xlog/prediction').limitToLast(20).once('value', function (snapshot) {
+    await db.ref('/4/xlog/prediction').limitToLast(20).once('value', function (snapshot) {
         FETCHED_DATA = []
         snapshot.forEach(s => {
             FETCHED_DATA.push(s.val())
@@ -29,7 +29,7 @@ async function main() {
     })
 
     // NGAMBIL DATA BARU -> TAMPILIN
-    db.ref('/2/xlog/prediction').endAt().limitToLast(1).on('child_added', function (snapshot) {
+    db.ref('/4/xlog/prediction').endAt().limitToLast(1).on('child_added', function (snapshot) {
         if (FETCH_STATUS) {
             const {
                 duration,
