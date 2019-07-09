@@ -9,12 +9,12 @@ async function main() {
     let FILTERED_DATA = []
 
     // NGAMBIL SEMUA YG BELUM BELUM
-    await db.ref('/4/xlog/sensor').limitToLast(20).once('value', function (snapshot) {
+    await db.ref('/4/xlog/sensor').limitToLast(50).once('value', function (snapshot) {
         FETCHED_DATA = []
-		
+
         snapshot.forEach(s => {
-            
-			FETCHED_DATA.push(s.val())
+
+            FETCHED_DATA.push(s.val())
         })
 
         if (GLOBAL_takeLastN == 0) {
@@ -36,11 +36,11 @@ async function main() {
             const {
                 Waktu,
                 temperature,
-				
+
             } = snapshot.val()
 
             //if (parameter.node !== 'Node-01')
-              //  return //bawahnya ga dieksekusi
+            //  return //bawahnya ga dieksekusi
             //}
 
             chart.data.labels.push(Waktu)
@@ -67,7 +67,7 @@ async function main() {
             datasets: [{
                 label: "Suhu Makanan",
                 fill: false,
-                borderColor: 'rgb(255, 87, 51)',
+                borderColor: 'rgb(0, 204, 0)',
                 data: FILTERED_DATA.map(data => data.temperature),
             }]
         },

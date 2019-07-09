@@ -37,7 +37,7 @@
     <!-- Page Content -->
     <div id="page-content-wrapper">
 
-      <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+      <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: darkcyan">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
           aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -71,15 +71,15 @@
         <div class="activity">
           <div class="container">
             <div class="row text-center justify-content-center head">
-              <h3> Pemantauan: <br>Temperature</h3>
+              <h3>Data Monitoring</h3>
             </div>
             <div class="row">
-              <div class="col-md-6">
+              <div class="col-md-12">
                 <div class="chart">
                   <canvas id="myChart-x"></canvas>
                 </div>
               </div>
-              <div class="col-md-6">
+              <div class="col-md-12">
                 <div class="chart">
                   <canvas id="myChart-y"></canvas>
                 </div>
@@ -90,28 +90,21 @@
                     <tr>
                       <th>No</th>
                       <th>Waktu</th>
-                      
-                      
                       <th>Suhu Makanan</th>
-                      
-                      
                     </tr>
                   </thead>
                   <tbody id="bodyTable">
                   </tbody>
                 </table>
               </div>
-               <div class="col-12 table">
+              <div class="col-12 table">
                 <table id="table_prediction" class="ui celled table" style="width:100%">
                   <thead>
                     <tr>
                       <th>No</th>
                       <th>Waktu</th>
-                      
-                      
                       <th>Suhu awal</th>
                       <th>Durasi (Menit)</th>
-                      
                     </tr>
                   </thead>
                   <tbody id="Prediction">
@@ -121,6 +114,7 @@
             </div>
           </div>
         </div>
+        <!-- <p>Hamdan Latief</p> -->
       </div>
     </div>
     <!-- /#page-content-wrapper -->
@@ -154,7 +148,7 @@
     };
     firebase.initializeApp(config);
   </script>
- 
+
   <script src="../assets/node1/index-mirx.js"></script>
   <script src="../assets/node1/index-miry.js"></script>
   <script src="../assets/node1/table.js"></script>

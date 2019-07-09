@@ -9,7 +9,7 @@ async function main() {
     let FILTERED_DATA = []
 
     // NGAMBIL SEMUA YG BELUM BELUM
-    await db.ref('/4/xlog/prediction').limitToLast(20).once('value', function (snapshot) {
+    await db.ref('/4/xlog/prediction').limitToLast(50).once('value', function (snapshot) {
         FETCHED_DATA = []
         snapshot.forEach(s => {
             FETCHED_DATA.push(s.val())
@@ -36,8 +36,8 @@ async function main() {
                 start_temperature
             } = snapshot.val()
 
-           // if (parameter.node !== 'Node-01') {
-             //   return //bawahnya ga dieksekusi
+            // if (parameter.node !== 'Node-01') {
+            //   return //bawahnya ga dieksekusi
             //}
 
             chart.data.labels.push(start_temperature)
@@ -64,7 +64,7 @@ async function main() {
             datasets: [{
                 label: "Durasi Stabil",
                 fill: false,
-                borderColor: 'rgb(255, 195, 0)',
+                borderColor: 'rgb(128, 255, 0)',
                 data: FILTERED_DATA.map(data => data.duration),
             }]
         },
